@@ -22,23 +22,9 @@ uint32_t variableInC = 0xdeaf;
 uint32_t nextSP;
 uint32_t currentSP;
 Tcb *currentTask;
+Tcb *nextTask;
 
 //All tasks =====================================================
-void task1()
-{
-	while(1)
-	{}
-}
-
-void task2()
-{
-	while(1){}
-}
-
-void task3()
-{
-	while(1){}
-}
 
 
 //============================================
@@ -52,7 +38,7 @@ int main() {
 	loadCurrentSP();
 	mainTcb.sp = currentSP;
 	nextSP = currentTask->next->sp;
-	
+	nextTask = currentTask->next;
 	
 	initSysTick();
 

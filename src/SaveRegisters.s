@@ -17,5 +17,19 @@ loadCurrentSP  	PROC
 								BX			lr									; Return to caller
                 ENDP
 									
+saveRegs  			PROC
+                EXPORT  saveRegs
+                IMPORT  nextTask
+								
+								;mov			r4, 0x444
+								;mov			r5, 0x55
+								;mov			r11, 0x011
+								push		{r4-r11, lr}
+								ldr			r14, =nextTask
+								;str  		r13, [r4]						; Store R13 to where R4 is pointing to
+								
+								BX			lr									; Return to caller
+                ENDP
+									
 								END
 									

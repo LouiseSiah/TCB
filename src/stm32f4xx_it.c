@@ -165,7 +165,7 @@ void PendSV_Handler(void)
 
 void SysTick_Handler(void)
 {
-	
+	saveRegs();
 	clearSysTickCountFlag();
 	HAL_IncTick();
 }

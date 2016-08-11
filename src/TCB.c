@@ -6,6 +6,21 @@ Tcb task1Tcb;
 Tcb task2Tcb;
 Tcb task3Tcb;
 
+void task1()
+{
+	while(1)
+	{}
+}
+
+void task2()
+{
+	while(1){}
+}
+
+void task3()
+{
+	while(1){}
+}
 
 /**
  * Must call this function first

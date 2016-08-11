@@ -42,6 +42,12 @@ extern Tcb task2Tcb;
 extern Tcb task3Tcb;
 extern Tcb taskCPU;
 
+void task1(void);
+
+void task2(void);
+
+void task3(void);
+
 void initTcb(void);
 
 
