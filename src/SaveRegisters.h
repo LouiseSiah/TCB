@@ -6,4 +6,6 @@ void loadCurrentSP(void);
 
 void saveRegs(void);
 
+void popSpToTcb(void);
+
 #endif	// __SAVE_REGISTERS_H__

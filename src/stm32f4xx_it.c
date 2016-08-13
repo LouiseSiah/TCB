@@ -165,7 +165,11 @@ void PendSV_Handler(void)
 
 void SysTick_Handler(void)
 {
-	saveRegs();
+	//saveRegs();
+	//nextSP = & (currentTask->next->sp);
+	//nextTask = currentTask->next;
+  //switchTask();
+	//popSpToTcb();
 	clearSysTickCountFlag();
 	HAL_IncTick();
 }

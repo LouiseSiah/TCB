@@ -245,8 +245,34 @@ PendSV_Handler  PROC
                 B       .
                 ENDP
 SysTick_Handler PROC
-                EXPORT  SysTick_Handler            [WEAK]
-                B       .
+                IMPORT  currentSP
+								IMPORT  nextSP
+								IMPORT  getNextTcb
+								IMPORT  switchTask
+								
+								;IMPORT	nextLR
+								;ldr			r0, =currentSP			; Let R4 points to 'currentSP'
+								;mov     sp, r0
+								push		{r4-r11}
+								ldr			r0, =currentSP		; Let R0 points to 'nextSP'
+								str			sp, [r0]
+																
+								;ldr			r2, =nextLR
+								mov			r2, lr
+								ldr			r0, =nextSP			; Let R0 points to 'nextSP'
+								ldr			sp, [r0]
+								;mov 		sp, r0
+								;pop 		{r4-r11,lr}
+							
+								ldr			r1, =switchTask
+								blx			r1
+								ldr			r1, =getNextTcb
+								blx			r1
+								mov			lr, r2
+								pop			{r4-r11}
+								BX			lr		
+                ;EXPORT  SysTick_Handler            [WEAK]
+                ;B       .
                 ENDP
 
 Default_Handler PROC

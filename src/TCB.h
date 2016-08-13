@@ -5,6 +5,8 @@
 
 #define TASK_STACK_SIZE	1024
 
+
+
 typedef struct Tcb Tcb;
 
 struct Tcb
@@ -42,13 +44,17 @@ extern Tcb task2Tcb;
 extern Tcb task3Tcb;
 extern Tcb taskCPU;
 
-void task1(void);
+extern Tcb *currentTask;
+extern Tcb *nextTask;
+extern uint32_t nextSP;
+extern uint32_t nextLR;
+//extern uint32_t currentSP;
 
-void task2(void);
 
-void task3(void);
+void initTcb( void (*task1), void (*task2), void (*task3));
 
-void initTcb(void);
+
+
 
 
 #endif	// __TCB_H__
