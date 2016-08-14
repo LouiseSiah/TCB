@@ -36,20 +36,11 @@ void getNextTcb(void);
 //============================================
 int main() {	
 	int i = 0;
-//	fourBytes = 0xdeadbeef;
-//	taskSp	= 0xace0face;
-//	noArgFunc();
 	
-	
-	//loadCurrentSP();
-	//CpuContext *context;
-	//mainTcb.sp = currentSP;
-	
-  initTcb(task1, task2, task3);
-	//currentSP = mainTcb.sp;
+	initTcb(task1, task2, task3);
+
 	currentTask = &mainTcb;
-	nextSP = currentTask->next->sp;
-	nextTask = currentTask->next;
+  getNextTcb();
 	initSysTick();
 
 	
@@ -83,7 +74,6 @@ void switchTask(void)
 {
 	currentTask->sp = currentSP;
 	currentTask = currentTask->next;
-	//currentSP = currentTask->sp;
 }
 
 

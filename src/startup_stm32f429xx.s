@@ -250,25 +250,19 @@ SysTick_Handler PROC
 								IMPORT  getNextTcb
 								IMPORT  switchTask
 								
-								;IMPORT	nextLR
-								;ldr			r0, =currentSP			; Let R4 points to 'currentSP'
-								;mov     sp, r0
-								push		{r4-r11}
-								ldr			r0, =currentSP		; Let R0 points to 'nextSP'
-								str			sp, [r0]
+saveRegister   	push		{r4-r11}
+loadCurrenSP		ldr			r0, =currentSP		; Let R0 points to 'nextSP'
+								str			sp, [r0]					; Store SP to where R0 is pointing to (currentSP here)
 																
-								;ldr			r2, =nextLR
-								mov			r2, lr
-								ldr			r0, =nextSP			; Let R0 points to 'nextSP'
-								ldr			sp, [r0]
-								;mov 		sp, r0
-								;pop 		{r4-r11,lr}
-							
-								ldr			r1, =switchTask
-								blx			r1
-								ldr			r1, =getNextTcb
-								blx			r1
-								mov			lr, r2
+storeLR					mov			r2, lr						; Move LR value to R2
+loadNextSP			ldr			r0, =nextSP				; Let R0 points to 'nextSP'
+								ldr			sp, [r0]					; Load the value of R0 is pointing to (nextSP) into SP
+																
+								ldr			r1, =switchTask	
+								blx			r1								; Call (branch-with-link) switchTask function
+								ldr			r1, =getNextTcb	
+								blx			r1								; Call (branch-with-link) getNextTcb function
+readLR					mov			lr, r2						; Move R2 value to LR
 								pop			{r4-r11}
 								BX			lr		
                 ;EXPORT  SysTick_Handler            [WEAK]

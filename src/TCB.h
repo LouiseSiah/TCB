@@ -54,7 +54,4 @@ extern uint32_t nextLR;
 void initTcb( void (*task1), void (*task2), void (*task3));
 
 
-
-
-
 #endif	// __TCB_H__
