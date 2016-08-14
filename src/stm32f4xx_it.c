@@ -155,21 +155,11 @@ void PendSV_Handler(void)
   * @param  None
   * @retval None
   */
-#include "SaveRegisters.h"
+
 #include "TCB.h"
-#define dequeue(x) linkListHeadRemove(x)
-#define queue(y,x) addList(y,x)
-#define peepHeadSP(x) (x->head->sp)
-#define getCPUspAddressFromMemory() (tempSP)
-#define getExpireTaskSP temp->sp
 
 void SysTick_Handler(void)
 {
-	//saveRegs();
-	//nextSP = & (currentTask->next->sp);
-	//nextTask = currentTask->next;
-  //switchTask();
-	//popSpToTcb();
 	clearSysTickCountFlag();
 	HAL_IncTick();
 }
